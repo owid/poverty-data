@@ -1,3 +1,2 @@
 country,year,iso_code,variable
-World,,,
-
+World,2021,OWID_WRL,TEST
