@@ -90,6 +90,7 @@ def pip_query_region(povline, year="all", ppp_version=2011):
         status = response.status_code
     
     df = pd.read_csv(io.StringIO(content.decode('utf-8')))
+    df = df[df['reporting_year']>=1990].reset_index(drop=True)
 
     return df
 
@@ -1281,7 +1282,7 @@ def standardise(df_final, cols, ppp):
     df_final = pd.concat([df_2011, df_2017], ignore_index=True)
     
     #Get columns from codebook and only keep those variables
-    df_codebook = pd.read_csv('codebook.csv')
+    df_codebook = pd.read_csv('pip_codebook.csv')
     variable_list = list(df_codebook['varname'])
     df_final = df_final[variable_list]
     
