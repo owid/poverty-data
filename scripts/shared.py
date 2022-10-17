@@ -1235,38 +1235,40 @@ def standardise(df_final, cols, ppp):
     
     df_final.to_csv(TEMP_DIR / f'pip_dataset_ppp{ppp}.csv', index=False)
     
+    return df_final
+
+def combine_2011_and_2011_data():
     #Read the respective 2011 and 2017 PPP file
-    # TODO: This code may fail the first time it's executed, since it's reading a file that it's not yet written.
-    #   This should be refactored.
     input_2011_file = TEMP_DIR / 'pip_dataset_ppp2011.csv'
     input_2017_file = TEMP_DIR / 'pip_dataset_ppp2017.csv'
-    df_2011 = pd.read_csv(input_2011_file)
-    df_2017 = pd.read_csv(input_2017_file)
-    
-    #Replace international lines numbers to text
-    df_2011.columns = df_2011.columns.str.replace("190", "international_povline")
-    df_2011.columns = df_2011.columns.str.replace("320", "lower_mid_income_povline")
-    df_2011.columns = df_2011.columns.str.replace("550", "upper_mid_income_povline")
-    df_2011.columns = df_2011.columns.str.replace("2170", "high_income_povline")
 
-    df_2017.columns = df_2017.columns.str.replace("215", "international_povline")
-    df_2017.columns = df_2017.columns.str.replace("365", "lower_mid_income_povline")
-    df_2017.columns = df_2017.columns.str.replace("685", "upper_mid_income_povline")
-    df_2017.columns = df_2017.columns.str.replace("2435", "high_income_povline")
-    
-    #Concatenate both 2011 and 2017 PPPs
-    df_final = pd.concat([df_2011, df_2017], ignore_index=True)
-    
-    #Get columns from codebook and only keep those variables
-    df_codebook = pd.read_csv(PIP_CODEBOOK_FILE)
-    variable_list = list(df_codebook['varname'])
-    df_final = df_final[variable_list]
-    
-    #Export
-    df_final.to_csv(OUTPUT_DATASET_FILE, index=False)
-    
-    
-    return df_final
+    if input_2011_file.is_file() and input_2017_file.is_file():
+        df_2011 = pd.read_csv(input_2011_file)
+        df_2017 = pd.read_csv(input_2017_file)
+        
+        #Replace international lines numbers to text
+        df_2011.columns = df_2011.columns.str.replace("190", "international_povline")
+        df_2011.columns = df_2011.columns.str.replace("320", "lower_mid_income_povline")
+        df_2011.columns = df_2011.columns.str.replace("550", "upper_mid_income_povline")
+        df_2011.columns = df_2011.columns.str.replace("2170", "high_income_povline")
+
+        df_2017.columns = df_2017.columns.str.replace("215", "international_povline")
+        df_2017.columns = df_2017.columns.str.replace("365", "lower_mid_income_povline")
+        df_2017.columns = df_2017.columns.str.replace("685", "upper_mid_income_povline")
+        df_2017.columns = df_2017.columns.str.replace("2435", "high_income_povline")
+        
+        #Concatenate both 2011 and 2017 PPPs
+        df_final = pd.concat([df_2011, df_2017], ignore_index=True)
+        
+        #Get columns from codebook and only keep those variables
+        df_codebook = pd.read_csv(PIP_CODEBOOK_FILE)
+        variable_list = list(df_codebook['varname'])
+        df_final = df_final[variable_list]
+        
+        #Export
+        df_final.to_csv(OUTPUT_DATASET_FILE, index=False)
+    else:
+        print("Run script for ppp 2011 and 2017 so that both can be combined into a final dataset.")
 
 
 def export(df_final, cols, ppp):

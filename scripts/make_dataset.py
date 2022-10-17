@@ -10,8 +10,8 @@ World Bank Data are based on primary household survey data obtained from governm
 
 import argparse
 
-from scripts.shared import TEMP_DIR, additional_variables_and_check, country_data, integrate_relative_poverty,\
-    median_patch, query_non_poverty, query_poverty, regional_data, standardise, thresholds
+from scripts.shared import TEMP_DIR, additional_variables_and_check, combine_2011_and_2011_data, country_data,\
+    integrate_relative_poverty, median_patch, query_non_poverty, query_poverty, regional_data, standardise, thresholds
 
 
 # Define temporary sub-folders that need to be created.
@@ -55,7 +55,7 @@ def main(ppp_version: int, download_data: bool = False, regenerate_data: bool = 
             temp_sub_dir.mkdir(parents=True)
 
     print(f'The code will use the {ppp_version} PPPs')
-        
+
     povlines_count = len(poverty_lines_cents)
     print(f'{povlines_count} poverty lines were defined (in cents):')
     print(f'{poverty_lines_cents}')
@@ -105,6 +105,9 @@ def main(ppp_version: int, download_data: bool = False, regenerate_data: bool = 
     # The dataset is formatted for public use.
 
     df_final = standardise(df_final, cols, ppp=ppp_version)
+
+    # Once the script has been executed for 2011 and 2017, combine both dataframes and generate final dataset.
+    combine_2011_and_2011_data()
 
 
 if __name__ == "__main__":
