@@ -1,15 +1,23 @@
-import pandas as pd
-import numpy as np
-import time
+import io
 import sys
+import time
+from pathlib import Path
+
+import numpy as np
+import pandas as pd
 import plotly.express as px
 import requests
-import io
 
+
+# Define path to output directory.
+OUTPUT_DIR = Path(__file__).parent.parent
+# Define base names of output files.
+OUTPUT_FILE_BASE_NAME = "owid-poverty-data"
+# Define codebook path.
+CODEBOOK_PATH = OUTPUT_DIR / "owid-poverty-codebook.csv"
 
 # ## Yes/No query
 # This code is to ask if the user wants to continue or not (used as a warning to update codes which take hours)
-
 def query_yes_no(question, default="yes"):
     """Ask a yes/no question via raw_input() and return their answer.
 
@@ -97,7 +105,6 @@ def pip_query_region(povline, year="all", ppp_version=2011):
 
 # ## Get country data
 # This code is to query poverty data from a poverty line (filled or not). Entities are standardised and returns multiple outputs, one raw file with all the results, one only for consumption, one only for income and one for income and consumption dropping duplicates.
-
 def country_data(extreme_povline_cents, filled, ppp, additional_dfs=True):
     #Query for all the countries and for the poverty line defined (only non-filled data)
     df_country = pip_query_country(popshare_or_povline = "povline",
@@ -140,7 +147,6 @@ def country_data(extreme_povline_cents, filled, ppp, additional_dfs=True):
 
 # ## Regional data
 # Returns standardised regional data
-
 def regional_data(extreme_povline_cents, ppp):
     #Query for all the regions and for the poverty line defined
     df_region = pip_query_region(extreme_povline_cents/100, ppp_version=ppp)
@@ -151,7 +157,6 @@ def regional_data(extreme_povline_cents, ppp):
 
 
 # ## Standardize entities
-
 def standardize_entities(orig_df,
                         entity_mapping_url,
                         mapping_varname_raw,
@@ -189,10 +194,8 @@ def standardize_entities(orig_df,
 
 # ## Querying poverty and non-poverty data from the PIP API
 
-# +
 #Create a dataframe for each poverty line on the list, including and excluding interpolations and for countries and regions
 #Each of these combinations are concatenated in a larger data frame.
-
 def query_poverty(poverty_lines_cents, filled, ppp):
 
     print('Querying data from several poverty lines from the PIP API...')
@@ -316,8 +319,6 @@ def query_poverty(poverty_lines_cents, filled, ppp):
     
     return df_final
 
-
-# -
 
 def query_non_poverty(df_final, df_country, df_region):
     
@@ -930,8 +931,6 @@ def generate_percentiles_regions(povline_list_dict, ppp):
 
 
 # ## Data transformations
-
-# +
 def additional_variables_and_check(df_final, poverty_lines_cents, col_relative, ppp):
     
     #Define groups of columns
@@ -1178,8 +1177,6 @@ def additional_variables_and_check(df_final, poverty_lines_cents, col_relative, 
     return df_final, cols
 
 
-# -
-
 def median_patch(df_final, ppp):
     
     print('Patching missing median values...')
@@ -1347,7 +1344,6 @@ def export(df_final, cols, ppp):
     return df_inc_only, df_cons_only, df_inc_or_cons
 
 
-# +
 def ppp_comparison():
     
     #Create files that merge poverty indices for different reference poverty lines in 2011 and 2017 PPPs
@@ -1400,8 +1396,6 @@ def ppp_comparison():
     elapsed_time = end_time - start_time
     print('Done. Execution time:', elapsed_time, 'seconds')
 
-
-# -
 
 def show_breaks(ppp):
     
@@ -1662,5 +1656,3 @@ def national_povlines():
     end_time = time.time()
     elapsed_time = end_time - start_time
     print('Done. Execution time:', elapsed_time, 'seconds')
-
-
