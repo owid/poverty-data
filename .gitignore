@@ -34,5 +34,6 @@ graphics/
 notebooks/
 pip_dataset_ppp2011.csv
 pip_dataset_ppp2017.csv
+temp/
 
 README_code.qmd

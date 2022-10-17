@@ -10,7 +10,7 @@ from pathlib import Path
 from tqdm.auto import tqdm
 from owid.datautils.io.s3 import S3
 
-from scripts.shared import OUTPUT_DIR, OUTPUT_FILE_BASE_NAME
+from scripts.shared import OUTPUT_DIR
 
 # Define S3 base URL.
 S3_URL = "https://nyc3.digitaloceanspaces.com"
@@ -20,10 +20,9 @@ S3_PROFILE_NAME = "default"
 S3_BUCKET_NAME = "owid-public"
 S3_DATA_DIR = Path("data/poverty")
 # Local files to upload.
+PIP_DATASET_NAME = "pip_dataset"
 FILES_TO_UPLOAD = {
-    (OUTPUT_DIR / OUTPUT_FILE_BASE_NAME).with_suffix(".csv"): (S3_DATA_DIR / OUTPUT_FILE_BASE_NAME).with_suffix(".csv"),
-    (OUTPUT_DIR / OUTPUT_FILE_BASE_NAME).with_suffix(".json"): (S3_DATA_DIR / OUTPUT_FILE_BASE_NAME).with_suffix(".json"),
-    (OUTPUT_DIR / OUTPUT_FILE_BASE_NAME).with_suffix(".xlsx"): (S3_DATA_DIR / OUTPUT_FILE_BASE_NAME).with_suffix(".xlsx"),
+    (OUTPUT_DIR / PIP_DATASET_NAME).with_suffix(".csv"): (S3_DATA_DIR / PIP_DATASET_NAME).with_suffix(".csv"),
 }
 
 
