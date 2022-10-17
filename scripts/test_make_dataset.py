@@ -1,7 +1,6 @@
 import unittest
-import os
 import pandas as pd
-from scripts.shared import OUTPUT_DIR, OUTPUT_FILE_BASE_NAME, CODEBOOK_PATH
+from scripts.shared import OUTPUT_CSV_FILE, PIP_CODEBOOK_FILE
 
 
 class TestMakeDataset(unittest.TestCase):
@@ -9,9 +8,9 @@ class TestMakeDataset(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.data = pd.read_csv((OUTPUT_DIR / OUTPUT_FILE_BASE_NAME).with_suffix(".csv"))
-        cls.codebook = pd.read_csv(CODEBOOK_PATH)
-        cls.index_cols = ["country", "year", "iso_code"]
+        cls.data = pd.read_csv(OUTPUT_CSV_FILE.with_suffix(".csv"))
+        cls.codebook = pd.read_csv(PIP_CODEBOOK_FILE)
+        cls.index_cols = ["country", "year"]
 
     def test_columns_in_codebook(self):
         """All columns in cleaned dataset should be in the codebook."""
@@ -44,5 +43,3 @@ class TestMakeDataset(unittest.TestCase):
             f"{row_all_nan.sum()} row(s) contain all NaN values."
         )
         self.assertTrue(row_all_nan.sum() == 0, msg)
-
-# TODO: Test that country names are harmonized.
