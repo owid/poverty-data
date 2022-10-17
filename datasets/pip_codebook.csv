@@ -1,5 +1,5 @@
-varname,description
-entity,"The name of the entity to which the row relates. Two types of entity are included in this dataset:
+column,description
+country,"The name of the country to which the row relates. It can be:
 
 1) Countries, whose names have been standardized to a common set of country names used across Our World in Data 
 2) Regional aggregates provided as standard within the PIP data according to World Bank region definitions."
