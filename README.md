@@ -2,20 +2,15 @@
 
 A global dataset of poverty and inequality measures prepared by [*Our World in Data*](https://ourworldindata.org/poverty) from the World Bank's Poverty and Inequality Platform database.
 
-TODO: Check that link to poverty page works.
-TODO: Finish description.
-
 ## The complete *Our World in Data* Poverty dataset
 
-### 🗂️ Download our complete PIP dataset : [CSV](https://nyc3.digitaloceanspaces.com/owid-public/data/poverty/pip_dataset.csv) | [XLSX](https://nyc3.digitaloceanspaces.com/owid-public/data/poverty/pip_dataset.xlsx) | [JSON](https://nyc3.digitaloceanspaces.com/owid-public/data/poverty/pip_dataset.json)
+### 🗂️ Download our complete PIP dataset : [CSV](https://nyc3.digitaloceanspaces.com/owid-public/data/poverty/pip_dataset.csv) | [XLSX](https://nyc3.digitaloceanspaces.com/owid-public/data/poverty/pip_dataset.xlsx)
 
-TODO: Check that links work.
-
-The CSV and XLSX files follow a format of 1 row per location and year. The JSON version is split by country, with an array of yearly records.
+The CSV and XLSX files follow a format of 1 row per location and year.
 
 We will continue to publish updated data on poverty as it becomes available. Most metrics are published on an annual basis.
 
-A [full codebook](https://github.com/owid/poverty-data/blob/main/pip_codebook.csv) is made available, with a description for each variable in the dataset.
+A [full codebook](https://github.com/owid/poverty-data/blob/main/datasets/pip_codebook.csv) is made available, with a description for each variable in the dataset.
 
 ## About this data
 #### Where is this data sourced from?
@@ -50,7 +45,6 @@ In collating this survey data the World Bank takes a range of steps to harmonize
 
 To help communicate the latter, the World Bank produces a variable that groups surveys within each individual country into more comparable ‘spells’. Our [Data Explorer](http://ourworldindata.org/poverty#explore-data-poverty) provides the option of viewing the data with these breaks in comparability indicated, and these spells are also indicated in our data [download](https://github.com/owid/poverty-data).
 
-
 #### Global and regional poverty estimates
 
 Along with data for individual countries, the World Bank also provides global and regional poverty estimates which aggregate over the available country data.
@@ -60,7 +54,6 @@ Surveys are not conducted annually in every country however – coverage is gene
 In order to produce global and regional aggregate estimates for a given year, the World Bank takes the surveys falling closest to that year for each country and ‘lines-up’ the data to the year being estimated by projecting it forwards or backwards.
 
 This lining-up is generally done on the assumption that household incomes or expenditure grow in line with the growth rates observed in national accounts data. You can read more about the interpolation methods used by the World Bank in [Chapter 5](https://worldbank.github.io/PIP-Methodology/lineupestimates.html) of the Poverty and Inequality Platform Methodology Handbook.
-
 
 #### How does the data account for inflation and for differences in the cost of living across countries?
 
@@ -73,7 +66,6 @@ But in a world where price differences across countries and over time are large 
 In September 2022, the World Bank updated its methodology, and now uses international-$ expressed in 2017 prices – updated from 2011 prices. This has had little effect on our overall understanding of poverty and inequality around the world. But poverty estimates for particular countries vary somewhat between the old and updated methodology. You can read more about this update in our article _[From $1.90 to $2.15 a day: the updated International Poverty Line](https://ourworldindata.org/from-1-90-to-2-15-a-day-the-updated-international-poverty-line)_.
 
 To allow for comparisons with the official data now expressed in 2017 international-$ data, the World Bank continues to release its poverty and inequality data expressed in 2011 international-$ as well. We have built a [Data Explorer](https://ourworldindata.org/explorers/poverty-explorer-2011-vs-2017-ppp) to allow you to compare these, and we make all figures available in terms of both sets of prices in our [data download](https://github.com/owid/poverty-data).
-
 
 #### Absolute vs relative poverty lines
 
@@ -93,20 +85,18 @@ More recently, relative poverty measures have come to be applied in a global con
 
 When comparing relative poverty rates around the world, however, it is important to keep in mind that – since [average incomes](https://ourworldindata.org/explorers/poverty-explorer?tab=map&facet=none&hideControls=false&Metric=Median+income+or+expenditure&Household+survey+data+type=Show+data+from+both+income+and+expenditure+surveys&country=IND~MOZ~BRA~MDG~GHA) are so far apart – such relative poverty lines relate to very different standards of living in rich and poor countries.
 
-
 #### Does the data account for non-market income, such as food grown by subsistence farmers?
 
 Many poor people today, as in the past, rely on subsistence farming rather than a monetary income gained from selling goods or their labor on the market. To take this into account and make a fair comparison of their living standards, the statisticians that produce these figures estimate the monetary value of their home production and add it to their income/expenditure.
 
 ## Changelog
 
+- On October 17, 2022: The repository is restructured and some minor issues are fixed.
 - On October 14, 2022: The first version of the World Bank Poverty and Inequality Platform (PIP) dataset was made available.
 
 ## Data alterations
 
 - **We standardize names of countries and regions.** Since the names of countries and regions are different in different data sources, we harmonize all names to the [*Our World in Data* standard entity names](https://ourworldindata.org/world-region-map-definitions).
-
-TODO: Complete list of data alterations.
 
 ## License
 
@@ -117,7 +107,5 @@ The data produced by third parties and made available by _Our World in Data_ is 
 ## Authors
 
 This data has been collected, aggregated, and documented by Joe Hasell and Pablo Arriagada.
-
-TODO: Check if this list is complete.
 
 *Our World in Data* makes data and research on the world’s largest problems understandable and accessible. [Read more about our mission](https://ourworldindata.org/about).
