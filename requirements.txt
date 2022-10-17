@@ -1,7 +1,0 @@
-pandas
-numpy
-time
-sys
-plotly
-io
-requests
