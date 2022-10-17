@@ -9,8 +9,16 @@ World Bank Data are based on primary household survey data obtained from governm
 """
 
 import argparse
-from shared import additional_variables_and_check, country_data, integrate_relative_poverty, median_patch,\
-    query_non_poverty, query_poverty, regional_data, standardise, thresholds
+
+from scripts.shared import TEMP_DIR, additional_variables_and_check, country_data, integrate_relative_poverty,\
+    median_patch, query_non_poverty, query_poverty, regional_data, standardise, thresholds
+
+
+# Define temporary sub-folders that need to be created.
+TEMP_SUB_DIRS = [
+    TEMP_DIR / "ppp_2011/raw",
+    TEMP_DIR / "ppp_2017/raw"
+]
 
 
 def main(ppp_version: int, download_data: bool = False, regenerate_data: bool = False) -> None:
@@ -40,7 +48,12 @@ def main(ppp_version: int, download_data: bool = False, regenerate_data: bool = 
         poverty_lines_cents = [100, 215, 365, 685, 1000, 2000, 2435, 3000, 4000]
         #Here we define the international poverty line
         extreme_povline_cents = 215    
-        
+
+    # Ensure output temporary folders exist.
+    for temp_sub_dir in TEMP_SUB_DIRS:
+        if not temp_sub_dir.is_dir():
+            temp_sub_dir.mkdir(parents=True)
+
     print(f'The code will use the {ppp_version} PPPs')
         
     povlines_count = len(poverty_lines_cents)
@@ -54,7 +67,7 @@ def main(ppp_version: int, download_data: bool = False, regenerate_data: bool = 
     # Here the code produces the output of PIP queries for countries (with and without inter/extrapolations), together with dataframes filter for only income data, only consumption or both (dropping duplicates). Also regional data is queried.
 
     df_country, df_country_inc, df_country_cons, df_country_inc_or_cons = country_data(extreme_povline_cents, filled="false", ppp=ppp_version)
-    df_country_filled, df_country_inc_filled, df_country_cons_filled, df_country_inc_or_cons_filled = country_data(extreme_povline_cents, filled="true", ppp=ppp_version)
+    # df_country_filled, df_country_inc_filled, df_country_cons_filled, df_country_inc_or_cons_filled = country_data(extreme_povline_cents, filled="true", ppp=ppp_version)
     df_region = regional_data(extreme_povline_cents, ppp=ppp_version)
 
     # ## Get poverty data for multiple poverty lines
@@ -116,4 +129,4 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
     # Execute main pipeline.
-    main(ppp_version=args.ppp_version, download_data=args.download_data, regenerate_data=args.regenerate_data)
+    main(ppp_version=int(args.ppp_version), download_data=args.download_data, regenerate_data=args.regenerate_data)

@@ -1,7 +1,6 @@
 import io
 import time
 from pathlib import Path
-from black import out
 
 import numpy as np
 import pandas as pd
