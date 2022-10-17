@@ -12,6 +12,8 @@ If all fieldwork for a survey took place during one calendar year, and relate to
 When household surveys span two calendar years, the Survey year noted in the PIP data is not an integer. The Gambia, for example, has a Survey year of 2015.31. This means that 69% of the fieldwork for this particular survey took place in 2015 while 31% of the fieldwork months took place in 2016. In these cases, Year is the floor of Survey year (i.e. Survey year always rounded down)."
 reporting_level,"The reporting level of the survey. It can be national, urban or rural."
 welfare_type,Indicates whether the survey data relates to household income or consumption expenditure.
+ppp_version,"The version of the Purchasing Power Parity (PPP), which are conversions into international-$ to adjust for inflation and for differences in the
+cost of living between countries. It can be 2011 or 2017."
 survey_year,"The following description is adapted from PIP Methodology Handbook:
 
 Within the PIP data, observations are alocated two different year variables: Year and Survey Year. 
@@ -28,8 +30,6 @@ As countries frequently improve the questionnaire design of household surveys an
 In order to guide users about when poverty can be compared over time within a country, [the PIP database includes a 'Comparability over time' variable]. Within a country, comparability of poverty estimates over time is assumed unless there is a known change to the survey instrument, survey methodology, measurement, or data structure. The assessment of comparability is country-dependent and relies on the accumulation of knowledge from past and current World Bank staff, as well as close dialogue with national data producers with knowledge of survey design and methodology. The complete documentation of this dataset is available in Atamanov et al. (2019).
 
 Atamanov, Aziz, R. Andres Castaneda Aguilar, Carolina Diaz-Bonilla, Dean Jolliffe, Christoph Lakner, Daniel Gerszon Mahler, Jose Montes, et al. 2019. “September 2019 PovcalNet Update: What’s New.” Global Poverty Monitoring Technical Note 10. https://openknowledge.worldbank.org/handle/10986/32478."
-ppp_version,"The version of the Purchasing Power Parity (PPP), which are conversions into international-$ to adjust for inflation and for differences in the
-cost of living between countries. It can be 2011 or 2017."
 headcount_ratio_international_povline,% of population living in households with an income or expenditure per person below the International Poverty Line: $1.90 a day (in 2011 prices) or $2.15 a day (in 2017 prices).
 headcount_ratio_lower_mid_income_povline,% of population living in households with an income or expenditure per person below the lower-middle income poverty line: $3.20 a day (in 2011 prices) or $3.65 a day (in 2017 prices).
 headcount_ratio_upper_mid_income_povline,% of population living in households with an income or expenditure per person below the upper-middle income poverty line: $5.50 a day (in 2011 prices) or $6.85 a day (in 2017 prices).

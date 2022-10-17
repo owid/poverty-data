@@ -23,8 +23,7 @@ venv.bak/
 scratchpad.py
 
 # Keep in git only the csv file of the dataset, and ignore the json and xlsx files (they will only be stored in S3).
-owid-poverty-data.json
-owid-poverty-data.xlsx
+datasets/pip_dataset.xlsx
 
 # Folders for data transformations
 data/
