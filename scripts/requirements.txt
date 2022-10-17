@@ -3,3 +3,4 @@ numpy==1.23.4
 pandas==1.4.0
 plotly==5.10.0
 pytest==6.2.5
+git+https://github.com/owid/data-utils-py.git@v0.4.15-alpha#egg=owid.datautils
