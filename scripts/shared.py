@@ -7,7 +7,6 @@ import pandas as pd
 import plotly.express as px
 import requests
 
-
 # Path to current directory.
 CURRENT_DIR = Path(__file__).parent
 # Path to (public) directory where output datasets will be stored.
@@ -1272,8 +1271,8 @@ def combine_2011_and_2011_data():
         df_final = df_final[variable_list]
         
         # Set an appropriate index and sort conveniently.
-        df_final = df_final.set_index(["country", "year", "reporting_level", "welfare_type", "ppp_version"],
-            verify_integrity=True).sort_index()
+        df_final = df_final.sort_values(["ppp_version", "country", "year", "reporting_level", "welfare_type"]).\
+            set_index(["country", "year", "reporting_level", "welfare_type", "ppp_version"], verify_integrity=True)
 
         #Export
         df_final.to_csv(OUTPUT_CSV_FILE)
