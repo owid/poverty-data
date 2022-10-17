@@ -13,6 +13,8 @@ import requests
 CURRENT_DIR = Path(__file__).parent
 # Path to (public) directory where output datasets will be stored.
 OUTPUT_DIR = CURRENT_DIR.parent / "datasets"
+# Path to (public) directory where input files are stored.
+INPUT_DIR = CURRENT_DIR.parent / "input"
 # Path to output PIP dataset file.
 OUTPUT_DATASET_FILE = OUTPUT_DIR / "pip_dataset.csv"
 # Path to PIP dataset codebook file.
@@ -1205,8 +1207,7 @@ def standardise(df_final, cols, ppp):
     
     print('Standardising entities...')
 
-    # TODO: This should not be a hidden file, since it is a required input in the processing.
-    mapping_file = TEMP_DIR / f"ppp_{ppp}/raw/countries_standardized.csv"
+    mapping_file = INPUT_DIR / f"ppp_{ppp}/countries_standardized.csv"
     # Standardize entity names
     df_final = standardize_entities(
         orig_df = df_final,
@@ -1485,7 +1486,7 @@ def regional_headcount(df_regions, df_country_filled, ppp):
     # Standardize entity names
     df_regions = standardize_entities(
         orig_df = df_regions,
-        entity_mapping_url = TEMP_DIR / f"ppp_{ppp}/raw/countries_standardized.csv",
+        entity_mapping_url = INPUT_DIR / f"ppp_{ppp}/countries_standardized.csv",
         mapping_varname_raw ='country',
         mapping_vaname_owid = 'Our World In Data Name',
         data_varname_old = 'Entity',
@@ -1590,37 +1591,6 @@ def survey_count(df_country, ppp):
     
     #upload_to_s3(df_country, 'PIP/datasets', f'pip_survey_count.csv')
     
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    print('Done. Execution time:', elapsed_time, 'seconds')
-
-
-def national_povlines():
-    
-    print('Creating dataset with national poverty lines (used to generate international poverty lines)...')
-    start_time = time.time()
-
-    # TODO: This file also seems to be a required input, and therefore should be accessible for everyone.
-    #  It should not be a temporary file.
-    national_povlines = pd.read_stata(TEMP_DIR / f'ppp_2017/raw/harmonized_npl_owid.dta')
-
-    national_povlines = standardize_entities(
-        orig_df = national_povlines,
-        entity_mapping_url = TEMP_DIR / f"ppp_2017/raw/countries_natpovlines_standardized.csv",
-        mapping_varname_raw ='country',
-        mapping_vaname_owid = 'Our World In Data Name',
-        data_varname_old = 'countrycode',
-        data_varname_new = 'Entity'
-    )
-
-    national_povlines = national_povlines.rename(columns={'year': 'Year',
-                                                         'incgroup_historical': 'Income group',
-                                                         'harm_npl': 'Harmonized national poverty line'})
-    national_povlines = national_povlines.drop(columns=['gdp_2017_ppp_pc'])
-
-    national_povlines = national_povlines.sort_values(by=['Year', 'Entity'])
-    national_povlines.to_csv(TEMP_DIR / f'ppp_2017/final/OWID_internal_upload/admin_database/pip_national_povlines.csv', index=False)
-
     end_time = time.time()
     elapsed_time = end_time - start_time
     print('Done. Execution time:', elapsed_time, 'seconds')
