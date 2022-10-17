@@ -1034,13 +1034,13 @@ def additional_variables_and_check(df_final, poverty_lines_cents, col_relative, 
     df_final[f'headcount_ratio_stacked_between_{poverty_lines_cents[1]}_{poverty_lines_cents[4]}'] = df_final[f'headcount_ratio_{poverty_lines_cents[4]}'] - df_final[f'headcount_ratio_{poverty_lines_cents[1]}']
     df_final[f'headcount_ratio_stacked_between_{poverty_lines_cents[4]}_{poverty_lines_cents[6]}'] = df_final[f'headcount_ratio_{poverty_lines_cents[6]}'] - df_final[f'headcount_ratio_{poverty_lines_cents[4]}']
     col_stacked_pct_extra = [f'headcount_ratio_stacked_between_{poverty_lines_cents[1]}_{poverty_lines_cents[4]}', f'headcount_ratio_stacked_between_{poverty_lines_cents[4]}_{poverty_lines_cents[6]}']
+
     
-    
-    
+
 #     df_final['headcount_stacked_between_190_1000'] = df_final['headcount_1000'] - df_final['headcount_190']
 #     df_final['headcount_stacked_between_1000_3000'] = df_final['headcount_3000'] - df_final['headcount_1000']
 #     col_stacked_n_extra = ['headcount_stacked_between_190_1000', 'headcount_stacked_between_1000_3000']
-    
+
 #     df_final['headcount_ratio_stacked_between_190_1000'] = df_final['headcount_ratio_1000'] - df_final['headcount_ratio_190']
 #     df_final['headcount_ratio_stacked_between_1000_3000'] = df_final['headcount_ratio_3000'] - df_final['headcount_ratio_1000']
 #     col_stacked_pct_extra = ['headcount_ratio_stacked_between_190_1000', 'headcount_ratio_stacked_between_1000_3000']
@@ -1228,7 +1228,7 @@ def standardise(df_final, cols, ppp):
     df_final = df_final[public_columns]
     
     #Align format of entity and year columns to the rest of the dataset
-    df_final = df_final.rename(columns={'Entity': 'entity',
+    df_final = df_final.rename(columns={'Entity': 'country',
                                        'Year': 'year'})
     #Add ppp_version column
     df_final['ppp_version'] = ppp
@@ -1262,7 +1262,7 @@ def combine_2011_and_2011_data():
         
         #Get columns from codebook and only keep those variables
         df_codebook = pd.read_csv(PIP_CODEBOOK_FILE)
-        variable_list = list(df_codebook['varname'])
+        variable_list = list(df_codebook['column'])
         df_final = df_final[variable_list]
         
         #Export
@@ -1359,7 +1359,7 @@ def ppp_comparison():
 #         col_365 = list(df_2017.filter(like="365", axis=1).columns)
 #         col_685 = list(df_2017.filter(like="685", axis=1).columns)
 #         col_2435 = list(df_2017.filter(like="2435", axis=1).columns)
-        
+
 #         #Select only id and reference poverty lines by PPP
 #         df_2011 = df_2011[col_id + col_190 + col_320 + col_550 + col_2170]
 #         df_2017 = df_2017[col_id + col_215 + col_365 + col_685 + col_2435]
