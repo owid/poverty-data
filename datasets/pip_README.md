@@ -30,7 +30,7 @@ In our [Data Explorer](https://ourworldindata.org/poverty#explore-data-poverty) 
 
 **Other comparability issues**
 
-There are a number of other ways in which comparability across surveys can be limited. The PIP [Methodology Handbook](https://worldbank.github.io/PIP-Methodology/index.html) provides a good summary of the comparability and data quality issues affecting this data and how it tries to address them.
+There are a number of other ways in which comparability across surveys can be limited. The PIP [Methodology Handbook](https://datanalytics.worldbank.org/PIP-Methodology/) provides a good summary of the comparability and data quality issues affecting this data and how it tries to address them.
 
 In collating this survey data the World Bank takes a range of steps to harmonize it where possible, but comparability issues remain. These affect comparisons both across countries and within individual countries over time.
 
@@ -44,7 +44,7 @@ Surveys are not conducted annually in every country however – coverage is gene
 
 In order to produce global and regional aggregate estimates for a given year, the World Bank takes the surveys falling closest to that year for each country and ‘lines up’ the data to the year being estimated by projecting it forward or backward.
 
-This lining-up is generally done on the assumption that household incomes or expenditure grow in line with the growth rates observed in national accounts data. You can read more about the interpolation methods used by the World Bank in [Chapter 5](https://worldbank.github.io/PIP-Methodology/lineupestimates.html) of the Poverty and Inequality Platform Methodology Handbook.
+This lining-up is generally done on the assumption that household incomes or expenditure grow in line with the growth rates observed in national accounts data. You can read more about the interpolation methods used by the World Bank in [Chapter 5](https://datanalytics.worldbank.org/PIP-Methodology/lineupestimates.html) of the Poverty and Inequality Platform Methodology Handbook.
 
 #### How does the data account for inflation and for differences in the cost of living across countries?
 
