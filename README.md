@@ -10,8 +10,6 @@ A [full codebook](https://github.com/owid/poverty-data/blob/main/datasets/pip_co
 
 Read [this document](https://github.com/owid/poverty-data/blob/main/datasets/pip_README.md) about World Bank's methodology and considerations taken into account to contruct the data for the Poverty and Inequality Platform.
 
-***We will continue to publish updated data on poverty as it becomes available. Most metrics are published on an annual basis.***
-
 ## Authors
 
 This data has been collected, aggregated, and documented by Joe Hasell and Pablo Arriagada.
